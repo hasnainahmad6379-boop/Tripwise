@@ -34,6 +34,7 @@ export const signup = async (req: Request, res: Response) => {
       message: "User signed up successfully",
     });
   } catch (error) {
+    console.error("Signup error:", error);
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === "P2002") {
         return res.status(409).json({

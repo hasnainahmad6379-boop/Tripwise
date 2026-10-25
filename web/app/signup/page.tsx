@@ -13,6 +13,10 @@ const SignupPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long.");
+      return;
+    }
     setError("");
     setLoading(true);
 
@@ -115,9 +119,15 @@ const SignupPage = () => {
               placeholder="Create a password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              minLength={8}
+              maxLength={128}
               required
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-black placeholder:text-black outline-none transition-all focus:border-[#2C5745] focus:ring-2 focus:ring-[#DCE9D9] sm:text-base"
             />
+
+            <p className="mt-2 text-xs text-gray-500">
+              Password must be at least 8 characters long.
+            </p>
           </div>
 
           {error && (
