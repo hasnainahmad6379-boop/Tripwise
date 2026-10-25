@@ -82,7 +82,7 @@ app.post(
 app.use(express.json());
 app.use(cors());
 
-app.get("/health", (req, res) => {
+app.get("/health", (_req, res) => {
   res.json({
     message: "TripWise API is running",
   });
@@ -100,6 +100,8 @@ app.get("/protected", authMiddleware, (req, res) => {
 
 app.use("/ai", authMiddleware, aiRoutes);
 
-app.listen(4000, () => {
-  console.log("Server running on http://localhost:4000");
+const PORT = Number(process.env.PORT) || 4000;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
