@@ -34,6 +34,7 @@ export const signup = async (req: Request, res: Response) => {
       message: "User signed up successfully",
     });
   } catch (error) {
+    console.log("SIGNUP HANDLER REACHED", new Date().toISOString());
     console.error("Signup error:", error);
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === "P2002") {
