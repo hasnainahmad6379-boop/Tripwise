@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import API_URL from "@/lib/api";
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -16,7 +17,7 @@ const SignupPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:4000/auth/signup", {
+      const response = await fetch(`${API_URL}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

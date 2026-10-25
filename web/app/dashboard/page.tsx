@@ -5,6 +5,7 @@ import TripForm from "@/components/TripForm/TripForm";
 import TripCard from "@/components/TripCard/TripCard";
 import TripChat from "@/components/TripChat/TripChat";
 import CreditSection from "@/components/CreditSection/CreditSection";
+import API_URL from "@/lib/api";
 type Trip = {
   id: number;
   destination: string;
@@ -46,7 +47,7 @@ const Dashboard = () => {
 
   async function getProtectedData() {
     const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:4000/protected", {
+    const response = await fetch(`${API_URL}/protected`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
@@ -63,7 +64,7 @@ const Dashboard = () => {
 
   async function fetchTrips(): Promise<TripsResponse> {
     const token = localStorage.getItem("token");
-    const response = await fetch("http://localhost:4000/trips", {
+    const response = await fetch("${API_URL}/trips", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
@@ -84,7 +85,7 @@ const Dashboard = () => {
       interests: string;
     }) => {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:4000/trips", {
+      const response = await fetch("${API_URL}/trips", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -118,7 +119,7 @@ const Dashboard = () => {
     }) => {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:4000/ai/generate-trip", {
+      const response = await fetch("${API_URL}/ai/generate-trip", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -194,7 +195,7 @@ const Dashboard = () => {
   const deleteTripMutation = useMutation({
     mutationFn: async (tripId: number) => {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:4000/trips/${tripId}`, {
+      const response = await fetch(`${API_URL}/trips/${tripId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

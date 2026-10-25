@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { useQueryClient } from "@tanstack/react-query";
+import API_URL from "@/lib/api";
 
 type TripChatProps = {
   trip: any;
@@ -141,7 +142,7 @@ const TripChat = ({ trip, onClose }: TripChatProps) => {
                             const token = localStorage.getItem("token");
 
                             const response = await fetch(
-                              "http://localhost:4000/ai/apply-day-change",
+                              `${API_URL}/ai/apply-day-change`,
                               {
                                 method: "POST",
                                 headers: {
@@ -246,7 +247,7 @@ const TripChat = ({ trip, onClose }: TripChatProps) => {
             try {
               const token = localStorage.getItem("token");
 
-              const response = await fetch("http://localhost:4000/ai/chat", {
+              const response = await fetch(`${API_URL}/ai/chat`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

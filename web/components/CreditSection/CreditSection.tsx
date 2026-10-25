@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import API_URL from "@/lib/api";
 
 const CreditSection = () => {
   const [credits, setCredits] = useState<number | null>(null);
@@ -32,7 +33,7 @@ const CreditSection = () => {
         return null;
       }
 
-      const response = await fetch("http://localhost:4000/ai/credits", {
+      const response = await fetch(`${API_URL}/ai/credits`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -118,7 +119,7 @@ const CreditSection = () => {
         return;
       }
 
-      const response = await fetch("http://localhost:4000/payments/checkout", {
+      const response = await fetch(`${API_URL}/payments/checkout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import API_URL from "@/lib/api";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const LoginPage = () => {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:4000/auth/login", {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
